@@ -41,7 +41,7 @@ export default class ListPage extends React.Component {
                         <div className="game">
                             <h2>{game.name}</h2>
                             <p>{`${game.min_players}-${game.max_players} players`}</p>
-                            <p>{game.category}</p>
+                            <p>Type: {game.category}</p>
                             <p>{game.expansion ? 'This is an expansion pack.'
                                 : 'This is a base game.'}</p>
                         </div>

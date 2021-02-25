@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom';
 import Header from './Header.js';
 import ListPage from './ListPage.js';
-// import DetailsPage from './DetailsPage.js';
-// import CreatePage from './CreatePage.js';
+import DetailsPage from './DetailsPage.js';
+import CreatePage from './CreatePage.js';
 
 export default class App extends React.Component {
   render() {
@@ -22,7 +22,7 @@ export default class App extends React.Component {
               exact
               component={ListPage}
             />
-            {/* <Route
+            <Route
               path="/details/:gameId"
               exact
               component={DetailsPage}
@@ -31,7 +31,7 @@ export default class App extends React.Component {
               path="/create"
               exact
               component={CreatePage}
-            /> */}
+            />
           </Switch>
         </Router>
       </div>

@@ -17,3 +17,11 @@
 a {
   text-decoration: none;
 }
+
+header a {
+  margin: 2px;
+}
+
+.current-page {
+  display: none;
+}
