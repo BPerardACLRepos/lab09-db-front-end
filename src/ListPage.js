@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './Loading.js';
 import { getBoardGames, getCategories } from './ApiUtils.js';
+import './App.css';
 
 export default class ListPage extends React.Component {
 
@@ -33,7 +34,7 @@ export default class ListPage extends React.Component {
     render() {
 
         return (
-            <div className="body">
+            <div className="main">
                 {this.state.loading && <Loading />}
                 {this.state.board_games.map(game =>
                     <Link to={`/board_games/${game.id}`} key={game.id}>
