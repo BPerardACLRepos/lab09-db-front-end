@@ -8,9 +8,6 @@ export default withRouter(class Header extends React.Component {
                 <NavLink exact activeClassName="current-page" to="/">
                     List
                 </NavLink>
-                <NavLink exact activeClassName="current-page" to="/details">
-                    Details
-                </NavLink>
                 <NavLink exact activeClassName="current-page" to="/create">
                     Create
                 </NavLink>

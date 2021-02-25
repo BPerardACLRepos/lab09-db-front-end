@@ -1,63 +1,51 @@
 import React from 'react';
-import request from 'superagent';
+import { Link } from 'react-router-dom';
 import Loading from './Loading.js';
+import { getBoardGames, getCategories } from './ApiUtils.js';
 
 export default class ListPage extends React.Component {
 
     state = {
         loading: false,
+        board_games: [],
+        categories: [],
     }
 
     componentDidMount = async () => {
-        this.state.loading = true;
-
-        await this.fetchGames();
+        await this.fetchGamesAndCategories();
     }
 
-    componentDidUpdate = async (prevProps, prevState) => {
-        // Render new pokemon on page change
-        if (prevState.currentPage !== this.state.currentPage) {
-            await this.fetchPokemon();
-        }
-    }
-
-    fetchPokemon = async () => {
+    fetchGamesAndCategories = async () => {
 
         this.setState({ loading: true });
 
-        const pokeapiData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=${this.state.currentPage}&perPage=${this.state.pokemonPerPage}`);
+        const boardGameData = await getBoardGames();
+
+        const categoriesData = await getCategories();
 
         this.setState({
             loading: false,
-            pokemonArray: pokeapiData.body.results,
-            totalPokemon: pokeapiData.body.count,
-        });
-    }
-
-    handleNextPageClick = () => {
-        this.setState({
-            currentPage: this.state.currentPage + 1
-        });
-    }
-
-    handlePreviousPageClick = () => {
-        this.setState({
-            currentPage: this.state.currentPage - 1
+            board_games: boardGameData,
+            categories: categoriesData,
         });
     }
 
     render() {
 
-        const {
-            pokemonArray,
-            loading,
-        } = this.state;
-
-        const lastPage = Math.ceil(this.state.totalPokemon / this.state.pokemonPerPage);
-
         return (
             <div className="body">
                 {this.state.loading && <Loading />}
+                {this.state.board_games.map(game =>
+                    <Link to={`/board_games/${game.id}`} key={game.id}>
+                        <div className="game">
+                            <h2>{game.name}</h2>
+                            <p>{`${game.min_players}-${game.max_players} players`}</p>
+                            <p>{game.category}</p>
+                            <p>{game.expansion ? 'This is an expansion pack.'
+                                : 'This is a base game.'}</p>
+                        </div>
+                    </Link>
+                )}
             </div>
         );
     }

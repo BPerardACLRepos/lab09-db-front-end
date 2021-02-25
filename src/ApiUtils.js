@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const URL = 'https://vast-shore-83500.herokuapp.com/';
+const URL = 'https://vast-shore-83500.herokuapp.com';
 
 export async function getBoardGames() {
     const response = await request.get(`${URL}/board_games`);
@@ -43,9 +43,8 @@ export async function getCategories() {
 export async function getCategoryId(categoryString) {
     const categories = await getCategories();
 
-    const categoryId = categories.find(category => {
-        category.category === categoryString;
-    });
+    const categoryId = categories.find(category =>
+        category.category === categoryString);
 
     return categoryId.id;
 }
