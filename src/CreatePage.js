@@ -61,16 +61,16 @@ export default class CreatePage extends React.Component {
                 {!this.state.loading &&
                     <form onSubmit={this.handleSubmit}>
                         <label>
-                            Game Name
-                    <input value={this.state.name} onChange={this.handleNameChange} />
+                            <p>Game Name</p>
+                            <input value={this.state.name} onChange={this.handleNameChange} />
                         </label>
                         <label>
-                            Maximum Players
-                    <input value={this.state.max_players} type="number" onChange={this.handleMaxPlayersChange} />
+                            <p>Maximum Players</p>
+                            <input value={this.state.max_players} type="number" onChange={this.handleMaxPlayersChange} />
                         </label>
                         <label>
-                            Minimum Players
-                    <input value={this.state.min_players} type="number" onChange={this.handleMinPlayersChange} />
+                            <p>Minimum Players</p>
+                            <input value={this.state.min_players} type="number" onChange={this.handleMinPlayersChange} />
                         </label>
                         <label>
                             Check box if this is an expansion
