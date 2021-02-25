@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import Loading from './Loading.js';
 import { addGame, getCategories } from './ApiUtils.js';
 
@@ -56,7 +55,6 @@ export default class CreatePage extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 {this.state.loading && <Loading />}
