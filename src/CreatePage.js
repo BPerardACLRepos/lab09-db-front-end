@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import Loading from './Loading.js';
 import { addGame, getCategories } from './ApiUtils.js';
 
@@ -9,7 +8,7 @@ export default class CreatePage extends React.Component {
         max_players: 0,
         min_players: 0,
         expansion: false,
-        category_id: 1,
+        category_id: 7,
         complete: false,
         categories: [],
         loading: false,
@@ -56,30 +55,29 @@ export default class CreatePage extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 {this.state.loading && <Loading />}
                 {!this.state.loading &&
                     <form onSubmit={this.handleSubmit}>
                         <label>
-                            Game Name
-                    <input value={this.state.name} onChange={this.handleNameChange} />
+                            <p>Game Name</p>
+                            <input value={this.state.name} onChange={this.handleNameChange} />
                         </label>
                         <label>
-                            Maximum Players
-                    <input value={this.state.max_players} type="number" onChange={this.handleMaxPlayersChange} />
+                            <p>Maximum Players</p>
+                            <input value={this.state.max_players} type="number" onChange={this.handleMaxPlayersChange} />
                         </label>
                         <label>
-                            Minimum Players
-                    <input value={this.state.min_players} type="number" onChange={this.handleMinPlayersChange} />
+                            <p>Minimum Players</p>
+                            <input value={this.state.min_players} type="number" onChange={this.handleMinPlayersChange} />
                         </label>
                         <label>
                             Check box if this is an expansion
                     <input value={this.state.expansion} type="checkbox" onChange={this.handleExpansionChange} />
                         </label>
                         <label>
-                            <select value={this.state.category} onChange={this.handleCategoryChange}>
+                            <select value={this.state.category_id} onChange={this.handleCategoryChange}>
                                 {this.state.categories.map(category =>
                                     <option value={category.id}
                                         key={category.id}>

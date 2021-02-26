@@ -1,10 +1,21 @@
+
+/* class styles */
 .main {
-  width: 90%;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   align-content: flex-start;
+  margin: 0 5%;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+.filter p {
+  margin-right: 10px;
 }
 
 .game {
@@ -14,6 +25,21 @@
   text-align: center;
 }
 
+.current-page {
+  display: none;
+}
+
+.warning {
+  margin: 10px 0;
+  border: dashed red 5px;
+}
+
+.warning button {
+  box-shadow: 0 0 8px 8px #ffff0077;
+  margin: 5px;
+}
+
+/* element styles */
 a {
   text-decoration: none;
 }
@@ -22,6 +48,27 @@ header a {
   margin: 2px;
 }
 
-.current-page {
-  display: none;
+form {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  margin-bottom: .5em;
+  text-align: center;
+}
+input {
+  border-radius: 7px;
+  text-align: center;
+}
+input[type="number"] {
+
+  margin: 0 40%;
+  width: 20%;
+}
+
+p {
+  margin: 0;
 }
