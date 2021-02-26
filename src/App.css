@@ -20,6 +20,16 @@
   display: none;
 }
 
+.warning {
+  margin: 10px 0;
+  border: dashed red 5px;
+}
+
+.warning button {
+  box-shadow: 0 0 8px 8px #ffff0077;
+  margin: 5px;
+}
+
 /* element styles */
 a {
   text-decoration: none;
