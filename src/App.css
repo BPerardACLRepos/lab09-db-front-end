@@ -9,6 +9,15 @@
   margin: 0 5%;
 }
 
+.filter {
+  display: flex;
+  justify-content: center;
+}
+
+.filter p {
+  margin-right: 10px;
+}
+
 .game {
   margin: 5px;
   padding: 5px;
