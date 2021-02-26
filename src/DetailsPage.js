@@ -1,6 +1,6 @@
 import React from 'react';
 import Loading from './Loading.js';
-import { addGame, getCategories } from './ApiUtils.js';
+import { deleteGame, updateGame, getCategories, getGame } from './ApiUtils.js';
 
 export default class CreatePage extends React.Component {
     state = {
@@ -15,14 +15,23 @@ export default class CreatePage extends React.Component {
     }
 
     componentDidMount = async () => {
-        await this.fetchCategories();
+        await this.fetchGameAndCategories();
     }
 
-    fetchCategories = async () => {
+    fetchGameAndCategories = async () => {
         this.setState({ loading: true })
+
         const categoriesData = await getCategories();
 
+        const gameId = this.props.match.params.gameId
+        const gameData = await getGame(gameId);
+
         this.setState({
+            name: gameData.name,
+            max_players: gameData.max_players,
+            min_players: gameData.min_players,
+            expansion: gameData.expansion,
+            category_id: gameData.category_id,
             categories: categoriesData,
             loading: false,
         });
@@ -45,10 +54,21 @@ export default class CreatePage extends React.Component {
     })
 
 
-    handleAddGame = async (e) => {
+    handleUpdateGame = async (e) => {
         e.preventDefault();
 
-        await addGame(this.state);
+        const gameId = this.props.match.params.gameId
+        await updateGame(gameId, this.state);
+
+        this.props.history.push('/');
+
+    }
+
+    handleDeleteGame = async (e) => {
+        e.preventDefault();
+
+        const gameId = this.props.match.params.gameId
+        await deleteGame(gameId);
 
         this.props.history.push('/');
 
@@ -61,23 +81,23 @@ export default class CreatePage extends React.Component {
                 {!this.state.loading &&
                     <form onSubmit={this.handleSubmit}>
                         <label>
-                            Game Name
-                    <input value={this.state.name} onChange={this.handleNameChange} />
+                            <p>Game Name</p>
+                            <input value={this.state.name} onChange={this.handleNameChange} />
                         </label>
                         <label>
-                            Maximum Players
-                    <input value={this.state.max_players} type="number" onChange={this.handleMaxPlayersChange} />
+                            <p>Maximum Players</p>
+                            <input value={this.state.max_players} type="number" onChange={this.handleMaxPlayersChange} />
                         </label>
                         <label>
-                            Minimum Players
-                    <input value={this.state.min_players} type="number" onChange={this.handleMinPlayersChange} />
+                            <p>Minimum Players</p>
+                            <input value={this.state.min_players} type="number" onChange={this.handleMinPlayersChange} />
                         </label>
                         <label>
                             Check box if this is an expansion
-                    <input value={this.state.expansion} type="checkbox" onChange={this.handleExpansionChange} />
+                    <input value={this.state.expansion} type="checkbox" onChange={this.handleExpansionChange} checked={this.state.expansion} />
                         </label>
                         <label>
-                            <select value={this.state.category} onChange={this.handleCategoryChange}>
+                            <select value={this.state.category_id} onChange={this.handleCategoryChange}>
                                 {this.state.categories.map(category =>
                                     <option value={category.id}
                                         key={category.id}>
@@ -86,7 +106,10 @@ export default class CreatePage extends React.Component {
                                 )}
                             </select>
                         </label>
-                        <button onClick={this.handleAddGame}>Add Game</button>
+                        <button onClick={this.handleUpdateGame}>Update Game</button>
+                        <div className="warning">
+                            <button onClick={this.handleDeleteGame}>Delete Game</button>
+                        </div>
                     </form>
                 }
             </div>

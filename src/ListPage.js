@@ -37,7 +37,7 @@ export default class ListPage extends React.Component {
             <div className="main">
                 {this.state.loading && <Loading />}
                 {this.state.board_games.map(game =>
-                    <Link to={`/board_games/${game.id}`} key={game.id}>
+                    <Link to={`/details/${game.id}`} key={game.id}>
                         <div className="game">
                             <h2>{game.name}</h2>
                             <p>{`${game.min_players}-${game.max_players} players`}</p>

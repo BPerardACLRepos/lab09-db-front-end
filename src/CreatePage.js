@@ -8,7 +8,7 @@ export default class CreatePage extends React.Component {
         max_players: 0,
         min_players: 0,
         expansion: false,
-        category_id: 1,
+        category_id: 7,
         complete: false,
         categories: [],
         loading: false,
@@ -77,7 +77,7 @@ export default class CreatePage extends React.Component {
                     <input value={this.state.expansion} type="checkbox" onChange={this.handleExpansionChange} />
                         </label>
                         <label>
-                            <select value={this.state.category} onChange={this.handleCategoryChange}>
+                            <select value={this.state.category_id} onChange={this.handleCategoryChange}>
                                 {this.state.categories.map(category =>
                                     <option value={category.id}
                                         key={category.id}>
